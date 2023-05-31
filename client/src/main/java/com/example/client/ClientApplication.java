@@ -1,5 +1,6 @@
 package com.example.client;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,6 +29,9 @@ import java.util.Map;
 @SpringBootApplication
 public class ClientApplication {
 
+    @Value("${service.url}")
+    private String serviceUrl;
+
     public static void main(String[] args) {
         SpringApplication.run(ClientApplication.class, args);
     }
@@ -48,7 +52,7 @@ public class ClientApplication {
 //                                        .tokenRelay()
 //
                                 )
-                                .uri("http://localhost:8080/")
+                                .uri(serviceUrl)
                 )
                 .build();
     }
@@ -60,7 +64,7 @@ public class ClientApplication {
 
     @Bean
     CustomerHttpClient customerHttpClient(WebClient.Builder builder) {
-        var wc = builder.baseUrl("http://localhost:8080/").build();
+        var wc = builder.baseUrl(serviceUrl).build();
         return HttpServiceProxyFactory
                 .builder(WebClientAdapter.forClient(wc))
                 .build()
