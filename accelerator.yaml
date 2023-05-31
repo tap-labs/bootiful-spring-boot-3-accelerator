@@ -14,35 +14,21 @@ accelerator:
       label: First names of the pair
       defaultValue: AppleBanana
       required: true
+
+  imports:
+    - name: tap-workload
+
+engine:
   chain:
     - merge:
         - include: [ "**/*" ]
           exclude: [ "*/config/*.yaml", "Tiltfile*", "README*.md", "grype.yaml", "catalog/*.yaml", ".github/workflows/**" ]
-        - include: [ "service/config/*.yaml" ]
+        - include: [ "*/config/*.yaml" ]
           chain:
             - type: ReplaceText
               substitutions:
-                - text: ": bootiful-spring-boot-service"
-                  with: "': bootiful-spring-boot-service-' + #pair.toLowerCase()"
-            - type: ReplaceText
-              substitutions:
-                - text: "/bootiful-spring-boot-service-"
-                  with: "'/bootiful-spring-boot-service-' + #pair.toLowerCase() + '-'"
-            - merge:
-                - type: InvokeFragment
-                  reference: tap-workload
-                - include: [ "**" ]
-              onConflict: UseFirst
-        - include: [ "client/config/*.yaml" ]
-          chain:
-            - type: ReplaceText
-              substitutions:
-                - text: ": bootiful-spring-boot-client"
-                  with: "': bootiful-spring-boot-client-' + #pair.toLowerCase()"
-            - type: ReplaceText
-              substitutions:
-                - text: "/bootiful-spring-boot-client-"
-                  with: "'/bootiful-spring-boot-client-' + #pair.toLowerCase() + '-'"
+                - text: "pairname"
+                  with: "#pair.toLowerCase()"
             - merge:
                 - type: InvokeFragment
                   reference: tap-workload
