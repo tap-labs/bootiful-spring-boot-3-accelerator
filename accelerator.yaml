@@ -8,10 +8,15 @@ accelerator:
     - gradle
     - spring-boot
     - web
+
+  imports:
+    - name: tap-workload
+
+engine:
   chain:
     - merge:
         - include: [ "**/*" ]
-          exclude: [ "config/*.yaml", "Tiltfile*", "README*.md", "catalog/*.yaml" ]
+          exclude: [ "config/*.yaml", "Tiltfile", "README.md", "catalog/*.yaml" ]
         - include: [ "config/*.yaml" ]
           chain:
             - type: ReplaceText
@@ -23,7 +28,7 @@ accelerator:
                   reference: tap-workload
                 - include: [ "**" ]
               onConflict: UseFirst
-        - include: [ "Tiltfile*" ]
+        - include: [ "Tiltfile" ]
           chain:
             - type: ReplaceText
               substitutions:
