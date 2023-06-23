@@ -16,7 +16,7 @@ accelerator:
           chain:
             - type: ReplaceText
               substitutions:
-                - text: "bootiful-spring-boot-service"
+                - text: bootiful-spring-boot-service
                   with: "#artifactId.toLowerCase()"
             - merge:
                 - type: InvokeFragment
