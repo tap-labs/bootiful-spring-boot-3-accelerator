@@ -23,3 +23,10 @@ accelerator:
                   reference: tap-workload
                 - include: [ "**" ]
               onConflict: UseFirst
+        - include: [ "Tiltfile*" ]
+          chain:
+            - type: ReplaceText
+              substitutions:
+                - text: bootiful-spring-boot-service
+                  with: "#artifactId.toLowerCase()"
+          onConflict: UseLast
