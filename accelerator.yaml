@@ -11,12 +11,23 @@ accelerator:
 
   imports:
     - name: tap-workload
+    - name: build-wrapper-gradle
 
 engine:
   chain:
     - merge:
         - include: [ "**/*" ]
-          exclude: [ "config/*.yaml", "Tiltfile", "README.md", "catalog/*.yaml" ]
+          exclude: [ "config/*.yaml", "Tiltfile", "catalog/*.yaml", "README.md" ]
+
+        - include: [ "README.md" ]
+          chain:
+            - type: ReplaceText
+              substitutions:
+                - text: bootiful-spring-boot-service
+                  with: "#artifactId"
+          onConflict: UseLast
+
+        # TAP config files
         - include: [ "config/*.yaml" ]
           chain:
             - type: ReplaceText
@@ -35,3 +46,16 @@ engine:
                 - text: bootiful-spring-boot-service
                   with: "#artifactId.toLowerCase()"
           onConflict: UseLast
+
+    # Gradle build files
+    - merge:
+        - include: [ "**" ]
+        - chain:
+            - include: [ "settings.gradle" ]
+            - type: ReplaceText
+              substitutions:
+                - text: 'bootiful-spring-boot-service'
+                  with: "#projectName"
+        - type: InvokeFragment
+          reference: build-wrapper-gradle
+      onConflict: UseLast

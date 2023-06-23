@@ -17,4 +17,4 @@ spec:
       value:
         autoscaling.knative.dev/minScale: "1"
   source:
-    image: harbor.services.tanzu.rocks/delta/bootiful-spring-boot-service-source
+    image: harbor.services.tanzu.rocks/delta/bootiful-spring-boot-service
