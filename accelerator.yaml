@@ -23,7 +23,7 @@ accelerator:
 engine:
   chain:
     - merge:
-        - include: [ "service/**", "service/**", "README.md", "LICENSE", ".gitignore" ]
+        - include: [ "service/**", "client/**", "README.md", "LICENSE", ".gitignore" ]
           exclude: [ "*/config/*.yaml", "*/Tiltfile", ".idea/*", "grype.yaml", "catalog/*.yaml", ".github/workflows/**" ]
         - include: [ "*/config/*.yaml", "*/Tiltfile", ".idea/runConfigurations/*.xml", "*/settings.gradle" ]
           chain:
