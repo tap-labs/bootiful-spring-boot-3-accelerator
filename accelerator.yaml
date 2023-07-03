@@ -22,8 +22,19 @@ engine:
   chain:
     - merge:
         - include: [ "**/*" ]
-          exclude: [ "*/config/*.yaml", "Tiltfile*", "README*.md", "grype.yaml", "catalog/*.yaml", ".github/workflows/**" ]
+          exclude: [ "*/config/*.yaml", "Tiltfile", "README.md", "grype.yaml", "catalog/*.yaml", ".github/workflows/**" ]
         - include: [ "*/config/*.yaml" ]
+          chain:
+            - type: ReplaceText
+              substitutions:
+                - text: "pairname"
+                  with: "#pair.toLowerCase()"
+            - merge:
+                - type: InvokeFragment
+                  reference: tap-workload
+                - include: [ "**" ]
+              onConflict: UseFirst
+        - include: [ "*/Tiltfile" ]
           chain:
             - type: ReplaceText
               substitutions:

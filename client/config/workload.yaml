@@ -4,7 +4,6 @@ metadata:
   name: bootiful-client-pairname
   labels:
     apps.tanzu.vmware.com/workload-type: web
-    apps.tanzu.vmware.com/has-tests: "false"
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
     app.kubernetes.io/part-of: bootiful-client-pairname
     tanzu.app.live.view: "true"
