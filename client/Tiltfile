@@ -1,0 +1,26 @@
+
+SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='harbor.services.tanzu.rocks/workshop/pairname-bootiful-client-source')
+LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
+NAMESPACE = os.getenv("NAMESPACE", default='workshop')
+
+k8s_custom_deploy(
+    'bootiful-client',
+    apply_cmd="tanzu apps workload apply -f config/workload.yaml --update-strategy replace --debug --live-update" +
+               " --local-path " + LOCAL_PATH +
+               " --namespace " + NAMESPACE +
+               " --source-image " + SOURCE_IMAGE +
+               " --yes --output yaml",
+    delete_cmd="tanzu apps workload delete -f config/workload.yaml --namespace " + NAMESPACE + " --yes",
+    container_selector='workload',
+
+    deps=['build.gradle', './build/classes/java/main', './build/resources/main'],
+    live_update=[
+       sync('./build/classes/java/main', '/workspace/BOOT-INF/classes'),
+       sync('./build/resources/main', '/workspace/BOOT-INF/classes')
+    ]
+)
+
+k8s_resource('bootiful-client', port_forwards=["8090:9090"],
+            extra_pod_selectors=[{'carto.run/workload-name': 'bootiful-client', 'app.kubernetes.io/component': 'run'}])
+
+allow_k8s_contexts('tap-workshop')
