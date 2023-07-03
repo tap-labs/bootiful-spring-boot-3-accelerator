@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/client" />
-<<<<<<< HEAD
         <option name="gradleJvm" value="#JAVA_HOME" />
-=======
->>>>>>> 07321a1 (wip accelerator)
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/client" />
@@ -17,10 +13,7 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/service" />
-<<<<<<< HEAD
         <option name="gradleJvm" value="#JAVA_HOME" />
-=======
->>>>>>> 07321a1 (wip accelerator)
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/service" />
@@ -29,8 +22,4 @@
       </GradleProjectSettings>
     </option>
   </component>
-<<<<<<< HEAD
 </project>
-=======
-</project>
->>>>>>> 07321a1 (wip accelerator)
