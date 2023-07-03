@@ -8,6 +8,7 @@ accelerator:
     - gradle
     - spring-boot
     - web
+    - workshop
   options:
     - name: pair
       inputType: text
@@ -17,35 +18,14 @@ accelerator:
 
   imports:
     - name: tap-workload
+    - name: build-wrapper-gradle
 
 engine:
   chain:
     - merge:
         - include: [ "service/*", "service/*", "README.md", "LICENSE", ".gitignore" ]
-          exclude: [ "*/config/*.yaml", "*/Tiltfile", ".idea/runConfigurations/*", "grype.yaml", "catalog/*.yaml", ".github/workflows/**" ]
-        - include: [ "*/config/*.yaml" ]
-          chain:
-            - type: ReplaceText
-              substitutions:
-                - text: "pairname"
-                  with: "#pair.toLowerCase()"
-            - merge:
-                - type: InvokeFragment
-                  reference: tap-workload
-                - include: [ "**" ]
-              onConflict: UseFirst
-        - include: [ "*/Tiltfile" ]
-          chain:
-            - type: ReplaceText
-              substitutions:
-                - text: "pairname"
-                  with: "#pair.toLowerCase()"
-            - merge:
-                - type: InvokeFragment
-                  reference: tap-workload
-                - include: [ "**" ]
-              onConflict: UseFirst
-        - include: [ ".idea/runConfigurations/*.xml" ]
+          exclude: [ "*/config/*.yaml", "*/Tiltfile", ".idea/*", "grype.yaml", "catalog/*.yaml", ".github/workflows/**" ]
+        - include: [ "*/config/*.yaml", "*/Tiltfile", ".idea/runConfigurations/*.xml", "*/settings.gradle" ]
           chain:
             - type: ReplaceText
               substitutions:
