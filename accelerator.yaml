@@ -18,7 +18,6 @@ accelerator:
 
   imports:
     - name: tap-workload
-    - name: build-wrapper-gradle
 
 engine:
   chain:
