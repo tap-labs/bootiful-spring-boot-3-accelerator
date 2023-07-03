@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Tanzu Live Update - client" type="TanzuLiveUpdateConfiguration" factoryName="TanzuLiveUpdateConfiguration">
+    <option name="localPath" value="$PROJECT_DIR$/client" />
+    <option name="namespace" value="workshop" />
+    <option name="sourceImage" value="harbor.services.tanzu.rocks/workshop/pairname-bootiful-client-source" />
+    <option name="tiltfilePath" value="$PROJECT_DIR$/client/Tiltfile" />
+    <method v="2" />
+  </configuration>
+</component>

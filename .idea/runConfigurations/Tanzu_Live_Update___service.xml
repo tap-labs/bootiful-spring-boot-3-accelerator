@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Tanzu Live Update - service" type="TanzuLiveUpdateConfiguration" factoryName="TanzuLiveUpdateConfiguration">
     <option name="localPath" value="$PROJECT_DIR$/service" />
-    <option name="namespace" value="trial" />
+    <option name="namespace" value="workshop" />
     <option name="sourceImage" value="harbor.services.tanzu.rocks/workshop/pairname-bootiful-service-source" />
     <option name="tiltfilePath" value="$PROJECT_DIR$/service/Tiltfile" />
     <method v="2" />
