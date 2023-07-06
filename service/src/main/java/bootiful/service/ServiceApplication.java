@@ -47,13 +47,6 @@ class CustomerHttpController {
                 .observe(() -> this.repository.findByName(name));
     }
 
-    @GetMapping("/customers/id/{id}")
-    Optional<Customer> customersById(@PathVariable Integer id) {
-        return Observation
-            .createNotStarted("by-id", this.registry)
-            .observe(() -> this.repository.findById(id));
-    }
-
     @GetMapping("/customers")
     Collection<Customer> customers() {
         return this.repository.findAll();
