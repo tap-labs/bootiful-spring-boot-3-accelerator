@@ -1,3 +1,5 @@
+# To register this accelerator to TAP:
+# tanzu accelerator create bootiful-spring-boot-3 --git-repository https://github.com/tap-labs/bootiful-spring-boot-3-accelerator --git-branch main
 accelerator:
   displayName: Bootiful Spring Boot 3
   description: Bootiful Spring Boot 3 from Josh on TAP
